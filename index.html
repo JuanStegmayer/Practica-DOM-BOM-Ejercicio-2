@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Crear Persona</title>
+  </head>
+  <body>
+    <h1>Crear Persona</h1>
+    <form id="formPersona">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" /><br /><br />
+      <label for="edad">Edad:</label>
+      <input type="number" id="edad" name="edad" /><br /><br />
+      <label for="dni">DNI:</label>
+      <input type="text" id="dni" name="dni" /><br /><br />
+      <label for="sexo">Sexo:</label>
+      <select id="sexo" name="sexo">
+        <option value="H">Hombre</option>
+        <option value="M">Mujer</option></select
+      ><br /><br />
+      <label for="peso">Peso:</label>
+      <input type="number" id="peso" name="peso" /><br /><br />
+      <label for="altura">Altura:</label>
+      <input type="number" id="altura" name="altura" /><br /><br />
+      <label for="añoNacimiento">Año de nacimiento:</label>
+      <input
+        type="number"
+        id="añoNacimiento"
+        name="añoNacimiento"
+      /><br /><br />
+      <button type="submit">Crear Persona</button>
+    </form>
+
+    <button id="mostrarGeneracion">Mostrar Generación</button>
+    <button id="esMayorDeEdad">Es Mayor de Edad</button>
+
+    <script>
+      const formPersona = document.getElementById("formPersona");
+      const mostrarGeneracionButton =
+        document.getElementById("mostrarGeneracion");
+      const esMayorDeEdadButton = document.getElementById("esMayorDeEdad");
+
+      let persona = null;
+
+      formPersona.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const nombre = document.getElementById("nombre").value;
+        const edad = parseInt(document.getElementById("edad").value);
+        const dni = document.getElementById("dni").value;
+        const sexo = document.getElementById("sexo").value;
+        const peso = parseFloat(document.getElementById("peso").value);
+        const altura = parseFloat(document.getElementById("altura").value);
+        const añoNacimiento = parseInt(
+          document.getElementById("añoNacimiento").value
+        );
+
+        persona = new Persona(
+          nombre,
+          edad,
+          dni,
+          sexo,
+          peso,
+          altura,
+          añoNacimiento
+        );
+      });
+
+      mostrarGeneracionButton.addEventListener("click", () => {
+        if (persona) {
+          persona.mostrarGeneracion();
+        } else {
+          alert("Debes crear una persona primero.");
+        }
+      });
+
+      esMayorDeEdadButton.addEventListener("click", () => {
+        if (persona) {
+          alert(persona.esMayorDeEdad());
+        } else {
+          alert("Debes crear una persona primero.");
+        }
+      });
+    </script>
+  </body>
+</html>
